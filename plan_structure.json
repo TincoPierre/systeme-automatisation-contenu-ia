@@ -1,0 +1,390 @@
+{
+  "news": [
+    {
+      "type": "News",
+      "jour": "Lundi",
+      "sujet": "Creer une autom pour veille "
+    }
+  ],
+  "outils": [
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "ChatGPT"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Genspark"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Fireflies"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Miro AI"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Napkin"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Text Blaze"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Quillbot"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Make"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Convergence AI"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "ChatSimple"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "ChatPDF"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Guidde AI"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "YouLearn AI"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Perplexity"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Suno"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Kling A"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Gamma"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Leonardo AI"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Softr"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "HeyGen"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Jasper"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Art AI"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "Manus"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "ElevenLabs"
+    },
+    {
+      "type": "Outils",
+      "jour": "Mardi",
+      "outil": "den ai"
+    }
+  ],
+  "saas_story": [
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Idée",
+      "titre": "Pourquoi je lance ce SaaS",
+      "description": "Raconter la genèse, le besoin à l’origine."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Idée",
+      "titre": "L’idée brute : résoudre X avec l’IA",
+      "description": "Expliquer le problème et la promesse simplement."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Validation",
+      "titre": "Comment j’ai validé l’idée sans coder",
+      "description": "Montrer la démarche : landing page, retours, sondages."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Validation",
+      "titre": "Les 3 signaux que le marché existe",
+      "description": "Prouver la traction initiale."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Branding",
+      "titre": "Nom, logo, identité visuelle : comment j’ai choisi",
+      "description": "Partager ton process créatif et outils utilisés."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Pivot",
+      "titre": "Premier pitch public : vos retours m’ont aidé à pivoter",
+      "description": "Montrer ton écoute du marché."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Validation",
+      "titre": "Ce que j’ai appris avec mes 10 premiers prospects",
+      "description": "Insights concrets, erreurs, apprentissages."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Réflexion",
+      "titre": "Simplicité ou complexité produit ?",
+      "description": "Créer de l’interaction avec ta communauté."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Outils",
+      "titre": "Mes outils no-code pour démarrer vite",
+      "description": "Partager stack de départ : Make, Notion, ChatGPT, etc."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Prototype",
+      "titre": "Premier prototype : ce qui marche et bloque",
+      "description": "Partager les coulisses du développement."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "MVP",
+      "titre": "Comment j’ai construit le MVP en X jours",
+      "description": "Montrer ta vitesse d’exécution et les choix faits."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Erreurs",
+      "titre": "Les 3 erreurs à éviter en développant un SaaS",
+      "description": "Leçon partagée, valeur ajoutée forte."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Feedback",
+      "titre": "Les feedbacks des premiers testeurs",
+      "description": "Témoignages, réactions, pistes d’amélioration."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "UX",
+      "titre": "Refaire l’UX de zéro après les retours",
+      "description": "Montrer ton agilité et ton écoute client."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Pricing",
+      "titre": "Comment j’ai défini mes premiers tarifs",
+      "description": "Explication concrète de la stratégie de prix."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Lancement",
+      "titre": "Premier client payé : ce que j’ai ressenti (et appris)",
+      "description": "Post émotion + apprentissage business."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Productivité",
+      "titre": "J’ai automatisé X tâches grâce à l’IA",
+      "description": "Montrer ton efficacité et ton usage de l’IA."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Traction",
+      "titre": "Mes 100 premiers utilisateurs : acquisition organique expliquée",
+      "description": "Partager les canaux utilisés."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Acquisition",
+      "titre": "Le canal d’acquisition qui a vraiment fonctionné",
+      "description": "Détailler ta stratégie gagnante."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Expérience",
+      "titre": "Comment j’ai mis en place un onboarding fluide",
+      "description": "Focus sur l’expérience utilisateur."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Transparence",
+      "titre": "Les chiffres après 1 mois de lancement",
+      "description": "Donner de la crédibilité et de la proximité."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Fidélisation",
+      "titre": "Ce que j’ai changé après les premiers churns",
+      "description": "Montrer la boucle d’amélioration continue."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Marketing",
+      "titre": "L’email marketing : ce qui convertit le mieux pour moi",
+      "description": "Partager les bonnes pratiques et templates."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Communauté",
+      "titre": "Comment j’ai trouvé mes premiers ambassadeurs",
+      "description": "Stratégie bouche-à-oreille et réseau."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Stack",
+      "titre": "Les outils que j’utilise chaque jour pour gérer mon SaaS",
+      "description": "Productivité, tech stack, routines."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Produit",
+      "titre": "Le moment où le produit s’est mis à se vendre tout seul",
+      "description": "Mettre en avant la valeur du produit."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Mindset",
+      "titre": "Comment j’ai géré mes premières critiques publiques",
+      "description": "Humaniser et renforcer ta crédibilité."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Croissance",
+      "titre": "L’itération produit qui a doublé la conversion",
+      "description": "Étude de cas chiffrée."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Modèle",
+      "titre": "Pourquoi j’ai rendu une partie freemium",
+      "description": "Stratégie long terme."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Résultat",
+      "titre": "J’ai atteint 5k€/mois : les 3 leviers clés",
+      "description": "Montrer progression et apprentissage."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Support",
+      "titre": "Comment j’ai organisé le support client à petite échelle",
+      "description": "Process et outils simples."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Équipe",
+      "titre": "Les premières embauches/freelances du projet",
+      "description": "Parler de la croissance humaine."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Automatisation",
+      "titre": "Le SaaS tourne pendant que je dors",
+      "description": "Partager tes automatisations internes."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Leçons",
+      "titre": "Ce que j’aurais aimé savoir avant de me lancer",
+      "description": "Post rétrospectif fort."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Bilan",
+      "titre": "De 0 à 10k€/mois : les chiffres, les galères, les insights",
+      "description": "Bilan complet et sincère."
+    },
+    {
+      "type": "SaaS Story",
+      "jour": "Jeudi",
+      "theme": "Vision",
+      "titre": "Et maintenant ? La suite (international, levée, IA...)",
+      "description": "Te projeter, teaser la suite."
+    }
+  ]
+}
