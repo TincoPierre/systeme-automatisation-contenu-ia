@@ -37,7 +37,7 @@ Un calendrier éditorial de **62 posts** prêts à être générés et publiés 
 │     └─ Ajustements si nécessaire                           │
 │                                                              │
 │  5. PUBLICATION                                             │
-│     └─ Make.com (automatique)                              │
+│     └─ n8n (automatique, open source)                      │
 │     └─ Publication selon calendrier                         │
 │                                                              │
 │  6. SUIVI                                                   │
@@ -59,32 +59,75 @@ Un calendrier éditorial de **62 posts** prêts à être générés et publiés 
 - **`export_to_excel.py`** : Export vers Excel formaté
 
 ### 📖 Guides et Documentation
-- **`architecture_systeme.md`** : Architecture technique détaillée
-- **`guide_automatisation_make.md`** : Configuration Make.com pas à pas
-- **`guide_veille_automatisee.md`** : Système de veille continue
 - **`README.md`** : Ce fichier (vue d'ensemble)
+- **`QUICKSTART_N8N.md`** : Démarrage rapide n8n (10 minutes)
+- **`guide_n8n.md`** : Guide complet n8n (recommandé)
+- **`guide_automatisation_make.md`** : Configuration Make.com (alternative)
+- **`guide_veille_automatisee.md`** : Système de veille continue
+- **`architecture_systeme.md`** : Architecture technique détaillée
+
+### 🔧 Configuration n8n
+- **`workflow_publication_auto.json`** : Workflow n8n prêt à importer
+- **`docker-compose.yml`** : Configuration Docker pour n8n
+- **`.env.example`** : Variables d'environnement
 
 ## Installation et Configuration
 
 ### Prérequis
-- Python 3.11+
+- Python 3.11+ (pour la génération de contenu)
+- Node.js 18+ ou Docker (pour n8n)
 - Compte OpenAI avec API key
-- Compte Make.com (gratuit)
 - Compte Google (pour Google Sheets)
 - Comptes LinkedIn et X (Twitter)
 
 ### Installation
 
-```bash
-# 1. Installer les dépendances Python
-pip3 install openai pandas openpyxl
+#### 1. Génération de Contenu (Python)
 
-# 2. Configurer l'API OpenAI
+```bash
+# Installer les dépendances Python
+pip3 install -r requirements.txt
+
+# Configurer l'API OpenAI
 export OPENAI_API_KEY="votre-clé-api"
 
-# 3. Vérifier l'installation
+# Vérifier l'installation
 python3 content_generator.py
 ```
+
+#### 2. Automatisation (n8n)
+
+**Option A : Docker (Recommandé)**
+```bash
+# Copier la configuration
+cp .env.example .env
+
+# Éditer et changer le mot de passe
+nano .env
+
+# Démarrer n8n
+docker-compose up -d
+
+# Accéder à http://localhost:5678
+```
+
+**Option B : npm**
+```bash
+# Installer n8n globalement
+npm install -g n8n
+
+# Démarrer n8n
+n8n start
+
+# Accéder à http://localhost:5678
+```
+
+**Option C : Railway (Cloud)**
+- Créer un compte sur [railway.app](https://railway.app)
+- Deploy n8n template
+- Importer le workflow
+
+📖 **Guide complet :** Voir `QUICKSTART_N8N.md` pour plus de détails
 
 ## Utilisation
 
@@ -117,15 +160,18 @@ python3 generer_batch.py stats
 3. Ajuster le contenu si nécessaire
 4. Changer le statut de "À valider" à "Validé"
 
-### Étape 3 : Configurer l'Automatisation
+### Étape 3 : Configurer l'Automatisation avec n8n
 
-Suivre le guide détaillé dans `guide_automatisation_make.md` :
+Suivre le guide détaillé dans `guide_n8n.md` ou le quickstart `QUICKSTART_N8N.md` :
 
-1. Créer un compte Make.com
-2. Importer le calendrier dans Google Sheets
-3. Configurer le workflow Make.com
-4. Connecter LinkedIn et X
-5. Tester et activer
+1. Installer et démarrer n8n (voir section Installation ci-dessus)
+2. Importer le workflow `workflow_publication_auto.json`
+3. Configurer les credentials (OpenAI, Google Sheets, LinkedIn)
+4. Importer le calendrier dans Google Sheets
+5. Tester le workflow manuellement
+6. Activer le workflow (publication automatique à 8h30)
+
+**Alternative :** Vous pouvez aussi utiliser Make.com (voir `guide_automatisation_make.md`)
 
 ### Étape 4 : Mettre en Place la Veille
 

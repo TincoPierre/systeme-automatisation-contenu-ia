@@ -1,0 +1,343 @@
+{
+  "name": "Publication Automatique LinkedIn & Twitter",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "30 8 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "id": "schedule-trigger"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "sheetName": "Calendrier",
+        "range": "A:O",
+        "options": {
+          "headerRow": 1
+        }
+      },
+      "name": "Google Sheets - Lire Calendrier",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [450, 300],
+      "id": "google-sheets-read",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filtrer les posts à publier aujourd'hui\nconst today = new Date().toISOString().split('T')[0];\n\nconst items = $input.all();\nconst filteredItems = [];\n\nfor (const item of items) {\n  const statut = item.json.Statut;\n  const datePublication = item.json['Date Publication'];\n  \n  if (statut === 'Validé' && datePublication === today) {\n    filteredItems.push(item);\n  }\n}\n\nif (filteredItems.length === 0) {\n  return [{ json: { hasItems: false, count: 0 } }];\n}\n\nreturn filteredItems.map(item => ({\n  json: { ...item.json, hasItems: true }\n}));"
+      },
+      "name": "Filter Posts Aujourd'hui",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300],
+      "id": "filter-code"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasItems }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "IF - Posts à publier ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 300],
+      "id": "if-node"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "id",
+              "value": "={{ $json.ID }}"
+            },
+            {
+              "name": "type",
+              "value": "={{ $json.Type }}"
+            },
+            {
+              "name": "brouillon_linkedin",
+              "value": "={{ $json['Brouillon LinkedIn'] }}"
+            },
+            {
+              "name": "brouillon_twitter",
+              "value": "={{ $json['Brouillon Twitter'] }}"
+            },
+            {
+              "name": "row_number",
+              "value": "={{ $json._row_number }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [1050, 200],
+      "id": "set-variables"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.brouillon_linkedin }}",
+        "additionalFields": {}
+      },
+      "name": "LinkedIn - Publier Post",
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [1250, 200],
+      "id": "linkedin-post",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "2",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.twitter.com/2/tweets",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "twitterOAuth1Api",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.brouillon_twitter }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Twitter - Publier Tweet",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1250, 400],
+      "id": "twitter-post",
+      "credentials": {
+        "twitterOAuth1Api": {
+          "id": "3",
+          "name": "Twitter account"
+        }
+      },
+      "notes": "Optionnel - Nécessite API Twitter payante"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetName": "Calendrier",
+        "range": "K{{ $json.row_number }}:N{{ $json.row_number }}",
+        "options": {
+          "valueInputMode": "USER_ENTERED"
+        },
+        "dataToSend": "defineBelow",
+        "fieldsUi": {
+          "values": [
+            {
+              "fieldId": "Statut",
+              "fieldValue": "Publié"
+            },
+            {
+              "fieldId": "Date Publiée",
+              "fieldValue": "={{ $now.format('yyyy-MM-dd HH:mm') }}"
+            },
+            {
+              "fieldId": "URL LinkedIn",
+              "fieldValue": "={{ $node['LinkedIn - Publier Post'].json.url || 'N/A' }}"
+            },
+            {
+              "fieldId": "URL Twitter",
+              "fieldValue": "={{ $node['Twitter - Publier Tweet'].json.data?.id || 'N/A' }}"
+            }
+          ]
+        }
+      },
+      "name": "Google Sheets - Update Statut",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [1450, 300],
+      "id": "google-sheets-update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@votre-domaine.com",
+        "toEmail": "votre-email@example.com",
+        "subject": "✅ Posts publiés - {{ $now.format('dd/MM/yyyy') }}",
+        "text": "Bonjour,\n\n{{ $json.count || 1 }} post(s) ont été publiés avec succès aujourd'hui.\n\nDétails :\n- Type : {{ $json.type }}\n- LinkedIn : {{ $node['LinkedIn - Publier Post'].json.url }}\n- Twitter : {{ $node['Twitter - Publier Tweet'].json.data?.id || 'Non publié' }}\n\nBonne journée !",
+        "options": {}
+      },
+      "name": "Send Email - Confirmation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1650, 300],
+      "id": "send-email",
+      "credentials": {
+        "smtp": {
+          "id": "4",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@votre-domaine.com",
+        "toEmail": "votre-email@example.com",
+        "subject": "ℹ️ Aucun post à publier aujourd'hui",
+        "text": "Bonjour,\n\nAucun post n'était prévu pour aujourd'hui ({{ $now.format('dd/MM/yyyy') }}).\n\nVérifiez votre calendrier éditorial si nécessaire.\n\nBonne journée !",
+        "options": {}
+      },
+      "name": "Send Email - Aucun Post",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [1050, 400],
+      "id": "send-email-no-post",
+      "credentials": {
+        "smtp": {
+          "id": "4",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Lire Calendrier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets - Lire Calendrier": {
+      "main": [
+        [
+          {
+            "node": "Filter Posts Aujourd'hui",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Posts Aujourd'hui": {
+      "main": [
+        [
+          {
+            "node": "IF - Posts à publier ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Posts à publier ?": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Email - Aucun Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn - Publier Post",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Twitter - Publier Tweet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn - Publier Post": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Update Statut",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitter - Publier Tweet": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Update Statut",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets - Update Statut": {
+      "main": [
+        [
+          {
+            "node": "Send Email - Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-06T09:00:00.000Z",
+  "versionId": "1"
+}

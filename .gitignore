@@ -52,3 +52,10 @@ Thumbs.db
 
 # Logs
 *.log
+
+
+# n8n
+.env
+workflows/
+n8n_data/
+
