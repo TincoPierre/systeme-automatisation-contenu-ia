@@ -124,12 +124,12 @@ import json
 from datetime import datetime, timedelta
 
 # Configuration
-AIRTABLE_API_KEY = "votre_api_key"  # À obtenir depuis Airtable
+AIRTABLE_TOKEN = "votre_token"  # Personal Access Token
 AIRTABLE_BASE_ID = "votre_base_id"  # Dans l'URL de votre base
 AIRTABLE_TABLE_NAME = "Posts"
 
 # Initialiser l'API
-api = Api(AIRTABLE_API_KEY)
+api = Api(AIRTABLE_TOKEN)
 table = api.table(AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME)
 
 # Charger le plan structuré
@@ -491,7 +491,7 @@ AIRTABLE_BASE_ID = os.getenv("AIRTABLE_BASE_ID")
 AIRTABLE_TABLE_NAME = "Posts"
 
 # Initialiser les APIs
-airtable_api = Api(AIRTABLE_API_KEY)
+airtable_api = Api(AIRTABLE_TOKEN)
 table = airtable_api.table(AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME)
 openai_client = OpenAI()
 
@@ -580,7 +580,7 @@ if __name__ == "__main__":
 **Utilisation :**
 ```bash
 # Configurer les variables
-export AIRTABLE_API_KEY="keyXXXXXXXXXXXXXX"
+export AIRTABLE_TOKEN="patXXXXXXXXXXXXXX"
 export AIRTABLE_BASE_ID="appXXXXXXXXXXXXXX"
 
 # Générer

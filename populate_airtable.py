@@ -11,19 +11,24 @@ import os
 from datetime import datetime, timedelta
 
 # Configuration
-AIRTABLE_API_KEY = os.getenv("AIRTABLE_API_KEY")
+AIRTABLE_TOKEN = os.getenv("AIRTABLE_TOKEN") or os.getenv("AIRTABLE_API_KEY")
 AIRTABLE_BASE_ID = os.getenv("AIRTABLE_BASE_ID")
 AIRTABLE_TABLE_NAME = "Posts"
 
-if not AIRTABLE_API_KEY or not AIRTABLE_BASE_ID:
+if not AIRTABLE_TOKEN or not AIRTABLE_BASE_ID:
     print("❌ Erreur : Variables d'environnement manquantes")
     print("   Exécutez :")
-    print("   export AIRTABLE_API_KEY='votre_clé'")
+    print("   export AIRTABLE_TOKEN='votre_token'  # Personal Access Token (recommandé)")
+    print("   ou")
+    print("   export AIRTABLE_API_KEY='votre_clé'  # API Key (ancien)")
     print("   export AIRTABLE_BASE_ID='votre_base_id'")
+    print("")
+    print("ℹ️  Airtable utilise maintenant des Personal Access Tokens.")
+    print("   Voir AIRTABLE_TOKEN_SETUP.md pour plus d'infos.")
     exit(1)
 
 # Initialiser l'API
-api = Api(AIRTABLE_API_KEY)
+api = Api(AIRTABLE_TOKEN)
 table = api.table(AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME)
 
 # Charger le plan structuré

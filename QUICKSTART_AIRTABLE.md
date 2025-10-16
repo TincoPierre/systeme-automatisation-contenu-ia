@@ -66,7 +66,7 @@ Renommer la table en **"Posts"**, puis ajouter ces colonnes :
 ### 3.1 Configurer les variables
 
 ```bash
-export AIRTABLE_API_KEY="keyXXXXXXXXXXXXXX"
+export AIRTABLE_TOKEN="patXXXXXXXXXXXXXX"
 export AIRTABLE_BASE_ID="appXXXXXXXXXXXXXX"
 export OPENAI_API_KEY="sk-XXXXXXXXXXXXXXXX"
 ```

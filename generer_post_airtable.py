@@ -10,11 +10,11 @@ from openai import OpenAI
 import os
 
 # Configuration
-AIRTABLE_API_KEY = os.getenv("AIRTABLE_API_KEY")
+AIRTABLE_TOKEN = os.getenv("AIRTABLE_TOKEN") or os.getenv("AIRTABLE_API_KEY")
 AIRTABLE_BASE_ID = os.getenv("AIRTABLE_BASE_ID")
 AIRTABLE_TABLE_NAME = "Posts"
 
-if not AIRTABLE_API_KEY or not AIRTABLE_BASE_ID:
+if not AIRTABLE_TOKEN or not AIRTABLE_BASE_ID:
     print("❌ Erreur : Variables d'environnement Airtable manquantes")
     print("   Exécutez :")
     print("   export AIRTABLE_API_KEY='votre_clé'")
@@ -22,7 +22,7 @@ if not AIRTABLE_API_KEY or not AIRTABLE_BASE_ID:
     exit(1)
 
 # Initialiser les APIs
-airtable_api = Api(AIRTABLE_API_KEY)
+airtable_api = Api(AIRTABLE_TOKEN)
 table = airtable_api.table(AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME)
 openai_client = OpenAI()
 
